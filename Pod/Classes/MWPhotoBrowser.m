@@ -371,6 +371,9 @@ static void * MWVideoPlayerObservation = &MWVideoPlayerObservation;
     }
     
     // Layout
+    if (@available(iOS 11.0, *)) {
+        [self layoutVisiblePages];
+    }
     [self.view setNeedsLayout];
 
 }
@@ -485,7 +488,12 @@ static void * MWVideoPlayerObservation = &MWVideoPlayerObservation;
 
 - (void)viewWillLayoutSubviews {
     [super viewWillLayoutSubviews];
-    [self layoutVisiblePages];
+    if (@available(iOS 11.0, *)) {
+        // Do nothing
+    }
+    else {
+        [self layoutVisiblePages];
+    }
 }
 
 - (void)layoutVisiblePages {
